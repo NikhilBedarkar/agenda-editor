@@ -17,7 +17,7 @@ public class Agenda {
 
     private String name;
 
-    @OneToMany(mappedBy = "agenda")
+    @OneToMany(mappedBy = "agenda",orphanRemoval = true)
     private List<AgendaItem> agendaItemList = new ArrayList<>();
 
     private Agenda() {
