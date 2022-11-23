@@ -107,7 +107,7 @@ class AgendaEditor extends React.Component {
                             links={this.state.links}
                             pageSize={this.state.pageSize}
                             onNavigate={this.onNavigate}
-                            onDelete={this.state.onDelete}
+                            onDelete={ this.onDelete}
                             updatePageSize={this.updatePageSize}/>
             </div>
         );
@@ -161,7 +161,6 @@ class AgendaList extends React.Component {
                 <Agenda key={agenda._links.self.href} agenda={agenda} onDelete={this.props.onDelete}/>
         );
 
-
         var navLinks = [];
         if ("first" in this.props.links) {
             navLinks.push(<button key="first" onClick={this.handleNavFirst}>&lt;&lt;</button>);
@@ -187,7 +186,9 @@ class AgendaList extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {agendas}
+                    {this.props.agendas.map(agenda =>
+                <Agenda key={agenda._links.self.href} agenda={agenda} onDelete={this.props.onDelete}/>
+        )}
                     </tbody>
                 </table>
                 <div>
@@ -214,7 +215,7 @@ class Agenda extends React.Component {
             <tr>
                 <td>{this.props.agenda.name}</td>
                 <td>
-                    <button onClick={this.handleDelete}>Delete</button>
+                    <button onClick={()=>this.handleDelete()}>Delete</button>
                 </td>
             </tr>
         );
